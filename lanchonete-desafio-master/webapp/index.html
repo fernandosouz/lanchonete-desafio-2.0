@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Desafio!</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <script src="script.js"></script>
+    <h1 class="texto-titulo">Olá, temos os melhores lanches do mundo!</h1>
+    <div class="dropdown lanches-cardapio">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <p id="toggleOption">Clique aqui para escolher seu lanche</p>
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu dropdown-lanches-cardapio" aria-labelledby="dropdownMenu1">
+        <li><a onclick="mostrarIngredientesDoLanche(1, 'X-Bacon')">X-Bacon</a></li>
+        <li><a onclick="mostrarIngredientesDoLanche(2, 'X-Burguer')">X-Burguer</a></li>
+        <li><a onclick="mostrarIngredientesDoLanche(3, 'X-Egg')">X-Egg</a></li>
+        <li><a onclick="mostrarIngredientesDoLanche(4, 'X-Egg Bacon')">X-Egg Bacon</a></li>
+        <li><a onclick="mostrarIngredientesDoLanche(5, 'Personalizado')">Quero personalizar!</a></li>
+      </ul>
+    </div>
+    <br>
+    <div class="lista-ingredientes" id="lista-ingredientes">
+      <h3>Gostaria de adicionar algum ingrediente?</h3>
+      <ul class="list-group" >
+        <li class="list-group-item">
+          <span>
+              Alface
+              <span class="pull-right">
+                  <span class="btn btn-xs btn-default" onclick="removerIngrediente('quantidadeAlface')">
+                      -
+                  </span>
+                  <span id="quantidadeAlface"> 0 </span>
+                  <span class="btn btn-xs btn-default" onclick="adicionarIngrediente('quantidadeAlface')">
+                      +
+                  </span>
+              </span>
+          </span>
+        </li>
+
+        <li class="list-group-item">
+          <span>
+              Bacon
+              <span class="pull-right">
+                  <span class="btn btn-xs btn-default" onclick="removerIngrediente('quantidadeBacon')">
+                      -
+                  </span>
+                  <span id="quantidadeBacon"> 0 </span>
+                  <span class="btn btn-xs btn-default" onclick="adicionarIngrediente('quantidadeBacon')">
+                      +
+                  </span>
+              </span>
+          </span>
+        </li>
+        <li class="list-group-item">
+          <span>
+              Hambúrguer de carne
+              <span class="pull-right">
+                  <span class="btn btn-xs btn-default" onclick="removerIngrediente('quantidadeHamburguer')">
+                      -
+                  </span>
+                  <span id="quantidadeHamburguer"> 0 </span>
+                  <span class="btn btn-xs btn-default" onclick="adicionarIngrediente('quantidadeHamburguer')">
+                      +
+                  </span>
+              </span>
+          </span>
+        </li>
+        <li class="list-group-item">
+          <span>
+              Ovo
+              <span class="pull-right">
+                  <span class="btn btn-xs btn-default" onclick="removerIngrediente('quantidadeOvo')">
+                    -
+                  </span>
+                  <span id="quantidadeOvo"> 0 </span>
+                  <span class="btn btn-xs btn-default" onclick="adicionarIngrediente('quantidadeOvo')">
+                      +
+                  </span>
+              </span>
+          </span>
+        </li>
+        <li class="list-group-item">
+          <span>
+              Queijo
+              <span class="pull-right">
+                  <span class="btn btn-xs btn-default" onclick="removerIngrediente('quantidadeQueijo')">
+                      -
+                  </span>
+                  <span id="quantidadeQueijo"> 0 </span>
+                  <span class="btn btn-xs btn-default" onclick="adicionarIngrediente('quantidadeQueijo')">
+                      +
+                  </span>
+              </span>
+          </span>
+        </li>
+      </ul>
+      <br>
+      <div class="botao-acabei">
+        <button type="button" class="btn" onclick="chamaServicoCalculoDoPreco()">Enviar pedido!</button>
+      </div>
+    </div>
+
+    <div id="resultados" class="resultados" style="visibility: hidden">
+      <h3 id="mostraValortotal"></h3>
+      <div id="promocoes" style="visibility: hidden">
+        <h3>As seguintes promoções foram aplicadas a você:</h3>
+        <h4 id="texto-promocoes"></h4>
+        <h2 id="valor-desconto"></h2>
+      </div>
+      <div class="botao-acabei">
+        <button type="button" class="btn" onclick="reiniciaPagina()">Fazer outro pedido!</button>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+version: "2"
+services:
+  dba:
+    image: postgres:9.6
+    volumes:
+      - sample_db:/var/lib/postgresql/data
+    container_name: "sample_db"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - TZ=GMT
+    volumes:
+      - "./data/postgres:/var/lib/postgresql/data"
+    ports:
+      - 5432:5432
+
+  web:
+    image: apache
+    build:
+     context: ./webapp
+     dockerfile: Dockerfile
+    container_name: apache_web2
+    restart: always
+    ports:
+      - "8080:80"
+
+  spring-boot-rest-api-app:
+    image: spring-boot-rest-docker-image
+    build:
+      context: server/
+      dockerfile: Dockerfile
+    ports:
+      - 8089:8080
+    depends_on:
+      - dba
+
+volumes:
+    sample_db: {}
